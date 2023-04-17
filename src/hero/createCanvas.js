@@ -117,7 +117,7 @@ function createCanvas() {
       let heroHomeOut = gsap.timeline({
         scrollTrigger: {
           trigger: ".section-home_hero",
-          start: "bottom 70%",
+          start: "bottom 30%",
           end: "bottom top",
           scrub: 1
         }

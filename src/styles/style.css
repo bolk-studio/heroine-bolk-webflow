@@ -80,6 +80,10 @@ html, body {
 .hero-enter .intro-image {
   margin-top: 1rem;
 }
+.hero-enter .enter-image {
+  width: 120px;
+  height: 120px;
+}
 .hero-artifact {
   position: absolute;
   width: 120rem;

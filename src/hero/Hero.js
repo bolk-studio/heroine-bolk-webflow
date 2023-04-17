@@ -158,7 +158,7 @@ export default class Hero {
 
         for (let i = 0; i < this.max; i++) {
             let m = new THREE.MeshBasicMaterial( {
-                map: new THREE.TextureLoader().load('./static/textures/cloud10-4.png'),
+                map: new THREE.TextureLoader().load('https://res.cloudinary.com/bolk/image/upload/v1680191934/heroine-hero-temple/static/textures/cloud10-4.png'),
                 transparent: true,
                 blending: THREE.AdditiveBlending,
                 depthTest: false,
@@ -328,7 +328,7 @@ export default class Hero {
 
     addClouds() {
 
-        let cloudTexture = new THREE.TextureLoader().load( './static/textures/cloud10-4.png' );
+        let cloudTexture = new THREE.TextureLoader().load( 'https://res.cloudinary.com/bolk/image/upload/v1680191934/heroine-hero-temple/static/textures/cloud10-4.png' );
 
         let material = new THREE.MeshBasicMaterial( {
             map: cloudTexture,
@@ -372,7 +372,7 @@ export default class Hero {
     addArtifacts() {
 
         this.circle = new Artifact({
-            url : "./static/artifacts/cerchio-smaller.json",
+            url : "https://res.cloudinary.com/bolk/image/upload/v1680191934/heroine-hero-temple/static/artifacts/cerchio-smaller.json",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--circle',
@@ -381,7 +381,7 @@ export default class Hero {
         this.artifactGroup.add(this.circle.artifact);
 
         this.cone = new Artifact({
-            url : "./static/artifacts/cone-smaller.json",
+            url : "https://res.cloudinary.com/bolk/image/upload/v1680191934/heroine-hero-temple/static/artifacts/cone-smaller.json",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--cone',
@@ -390,7 +390,7 @@ export default class Hero {
         this.artifactGroup.add(this.cone.artifact);
 
         this.donut = new Artifact({
-            url : "./static/artifacts/donut-smaller.json",
+            url : "https://res.cloudinary.com/bolk/image/upload/v1680191934/heroine-hero-temple/static/artifacts/donut-smaller.json",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--donut',
@@ -399,7 +399,7 @@ export default class Hero {
         this.artifactGroup.add(this.donut.artifact);
 
         this.halfcircle = new Artifact({
-            url : "./static/artifacts/half-circl-smaller.json",
+            url : "https://res.cloudinary.com/bolk/image/upload/v1680191934/heroine-hero-temple/static/artifacts/half-circl-smaller.json",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--halfcircle',

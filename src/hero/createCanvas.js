@@ -122,12 +122,10 @@ function createCanvas() {
           scrub: 1
         }
       });
-      aboutHeroOut
+      heroHomeOut
         .to("[overline='home-hero']", { y: "-700rem", duration: 1 }, "<")
         .to("[heading='home-hero']", { y: "-600rem", duration: 1 }, "<")
         .to("[text='home-hero']", { y: "-500rem", duration: 1 }, "<5%");
-  
-        
     }
 
     /*HERO TEXT -> NO LONGER NEEDED

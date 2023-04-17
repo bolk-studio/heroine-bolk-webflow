@@ -77,6 +77,11 @@ html, body {
   text-decoration: none;
   flex-direction: column;
 }
+@media (max-width: 768px) {
+  .hero-enter {
+    width: 60vw;
+  }
+}
 .hero-enter .intro-image {
   margin-top: 1rem;
 }

@@ -21,7 +21,7 @@ function createCanvas() {
 
   var tl = gsap.timeline();
   tl.to(".hero-loader__txt span", {height: '100%',duration: 2});
-  tl.to('.hero-loader',{opacity:0,duration:0});
+  tl.to('.hero-loader',{opacity:0,duration:.5});
   tl.add('endload')
   tl.to(scene.ringMesh.material,{opacity: .5,delay:1,duration:2},'endload')
   tl.to(scene.ringMesh.position,{y: 0,duration:2},'endload')
@@ -68,7 +68,7 @@ function createCanvas() {
 
   document.querySelector('.hero-enter').addEventListener('click',()=>{
 
-    gsap.set('html,body',{overflow:'visible'});
+    gsap.set('html,body',{overflow:'initial'});
 
     scene.circle.init();
     scene.cone.init();

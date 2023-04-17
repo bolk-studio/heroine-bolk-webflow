@@ -158,7 +158,7 @@ export default class Hero {
 
         for (let i = 0; i < this.max; i++) {
             let m = new THREE.MeshBasicMaterial( {
-                map: new THREE.TextureLoader().load('./static/textures/cloud10-4.png'),
+                map: new THREE.TextureLoader().load('https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643d011d258bc4080dcc9d1a_cloud10-4.png'),
                 transparent: true,
                 blending: THREE.AdditiveBlending,
                 depthTest: false,
@@ -328,7 +328,7 @@ export default class Hero {
 
     addClouds() {
 
-        let cloudTexture = new THREE.TextureLoader().load( './static/textures/cloud10-4.png' );
+        let cloudTexture = new THREE.TextureLoader().load( 'https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643d011d258bc4080dcc9d1a_cloud10-4.png' );
 
         let material = new THREE.MeshBasicMaterial( {
             map: cloudTexture,

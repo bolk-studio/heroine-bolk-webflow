@@ -108,7 +108,7 @@ function createCanvas() {
     heroHome
       .to("[opacity-null]", {
         opacity: 1,
-        duration: 0
+        duration: 0.5
       })
       .from("[navbar='home-hero']", {
         y: "-50rem",

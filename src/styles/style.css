@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
-  overflow-x: hidden !important;
+  /* overflow-x: hidden !important; */
 }
 #hero-canvas {
   position: absolute;

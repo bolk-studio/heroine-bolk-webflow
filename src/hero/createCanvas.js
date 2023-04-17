@@ -104,6 +104,19 @@ function createCanvas() {
     gsap.to(scene.materialTemple,{opacity: 1,duration:3,delay:2})
     gsap.set('.hero-enter',{display:'none'});
 
+    let heroHome = gsap.timeline({ ease: "power1.inOut" });
+    heroHome
+      .to("[opacity-null]", {
+        opacity: 1,
+        duration: 0
+      })
+      .from("[navbar='home-hero']", {
+        y: "-50rem",
+        duration: 1
+      })
+      .from("[overline='hero-home']", { y: "300rem", duration: 1 }, "<50%")
+      .from("[heading='hero-home']", { y: "500rem", duration: 1 }, "<")
+      .from("[text='hero-home']", { y: "700rem", duration: 1 }, "<5%");
 
     /*HERO TEXT -> NO LONGER NEEDED
     let spTitle = new SplitText('.hero-bottom__title', { type: "chars" });

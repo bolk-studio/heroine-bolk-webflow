@@ -81,8 +81,8 @@ html, body {
 }
 .hero-artifact {
   position: absolute;
-  width: 7.5rem;
-  height: 7.5rem;
+  width: 120rem;
+  height: 120rem;
 }
 .hero-artifact--circle {
   top: 34vh;

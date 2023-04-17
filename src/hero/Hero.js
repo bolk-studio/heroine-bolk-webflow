@@ -372,7 +372,7 @@ export default class Hero {
     addArtifacts() {
 
         this.circle = new Artifact({
-            url : "./static/artifacts/cerchio-smaller.json",
+            url : "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2aa4cc57c21cd0bfb_cerchio-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--circle',
@@ -381,7 +381,7 @@ export default class Hero {
         this.artifactGroup.add(this.circle.artifact);
 
         this.cone = new Artifact({
-            url : "./static/artifacts/cone-smaller.json",
+            url : "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2835c89b0939709cb_cone-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--cone',
@@ -390,7 +390,7 @@ export default class Hero {
         this.artifactGroup.add(this.cone.artifact);
 
         this.donut = new Artifact({
-            url : "./static/artifacts/donut-smaller.json",
+            url : "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd29a03d47359ae1bf6_donut-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--donut',
@@ -399,7 +399,7 @@ export default class Hero {
         this.artifactGroup.add(this.donut.artifact);
 
         this.halfcircle = new Artifact({
-            url : "./static/artifacts/half-circl-smaller.json",
+            url : "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd1a6520881679e8cbe_half-circl-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--halfcircle',

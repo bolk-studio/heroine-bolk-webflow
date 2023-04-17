@@ -68,7 +68,7 @@ function createCanvas() {
 
   document.querySelector('.hero-enter').addEventListener('click',()=>{
 
-    // gsap.set('html,body',{overflow:'initial'});
+    gsap.set('html,body',{overflow:'visible'});
 
     scene.circle.init();
     scene.cone.init();

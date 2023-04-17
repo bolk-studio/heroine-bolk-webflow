@@ -85,6 +85,19 @@ if (window.sessionStorage.getItem('firstload') == null) {
   gsap.to(scene.materialTemple,{opacity: 1,duration:3,delay:2})
   gsap.set('.hero-enter',{display:'none'});
 
+  let heroHome = gsap.timeline({ delay: 0.5, ease: "power1.inOut" });
+  heroHome
+    .to("[opacity-null]", {
+      opacity: 1,
+      duration: 1
+    })
+    .to("[logo='home-loader']", {
+      opacity: 0,
+      duration: 0.5
+    })
+    .from("[overline='home-hero']", { y: "300rem", duration: 1 }, "<50%")
+    .from("[heading='home-hero']", { y: "500rem", duration: 1 }, "<")
+    .from("[text='home-hero']", { y: "700rem", duration: 1 }, "<5%");
 
   //HERO TEXT
   let spTitle = new SplitText('.hero-bottom__title', { type: "chars" });
@@ -195,6 +208,19 @@ document.querySelector('.hero-enter').addEventListener('click',()=>{
   gsap.to(scene.materialTemple,{opacity: 1,duration:3,delay:2})
   gsap.set('.hero-enter',{display:'none'});
 
+  let heroHome = gsap.timeline({ delay: 0.5, ease: "power1.inOut" });
+  heroHome
+    .to("[opacity-null]", {
+      opacity: 1,
+      duration: 1
+    })
+    .to("[logo='home-loader']", {
+      opacity: 0,
+      duration: 0.5
+    })
+    .from("[overline='home-hero']", { y: "300rem", duration: 1 }, "<50%")
+    .from("[heading='home-hero']", { y: "500rem", duration: 1 }, "<")
+    .from("[text='home-hero']", { y: "700rem", duration: 1 }, "<5%");
 
   //HERO TEXT
   let spTitle = new SplitText('.hero-bottom__title', { type: "chars" });

@@ -113,19 +113,6 @@ function createCanvas() {
       .from("[overline='home-hero']", { y: "300rem", duration: 1 }, "<50%")
       .from("[heading='home-hero']", { y: "500rem", duration: 1 }, "<")
       .from("[text='home-hero']", { y: "700rem", duration: 1 }, "<5%");
-    if (window.innerWidth > 992) {
-      let heroHomeOut = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".section-home_hero",
-          start: "bottom 30%",
-          end: "bottom top",
-          scrub: 1
-        }
-      });
-      heroHomeOut
-        .to("[overline='home-hero']", { y: "-700rem", duration: 1 }, "<")
-        .to("[heading='home-hero']", { y: "-600rem", duration: 1 }, "<")
-        .to("[text='home-hero']", { y: "-500rem", duration: 1 }, "<5%");
     }
 
     /*HERO TEXT -> NO LONGER NEEDED

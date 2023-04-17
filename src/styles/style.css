@@ -16,7 +16,7 @@ html, body {
   position: relative;
   height: 100vh;
 }
-.hero-loader {
+/* .hero-loader is set on Webflow to fix a glitch on load {
   position: fixed;
   top: 0;
   left: 0;
@@ -27,9 +27,9 @@ html, body {
   align-items: center;
   justify-content: center;
   z-index: 99;
-  /* transition: all 1.5s; */
+  transition: all 1.5s; 
   pointer-events: none;
-}
+} */
 .hero-loader__txt {
   clip-path: url(#clipping);
   width: 69px;
@@ -81,7 +81,7 @@ html, body {
   margin-top: 1rem;
 }
 .hero-enter .enter-image {
-  width: 120rem;
+  width: 392rem;
 }
 .hero-artifact {
   position: absolute;

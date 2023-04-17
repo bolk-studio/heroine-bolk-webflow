@@ -63,7 +63,6 @@ function createCanvas() {
         }
     },'endload-=0.5');
 
-
     window.localStorage.setItem('firstload','false');
 
     } else {

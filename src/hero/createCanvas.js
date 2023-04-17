@@ -19,8 +19,6 @@ const scene = new Hero({
 });
 scene.start();
 
-
-
 if (window.sessionStorage.getItem('firstload') == null) {
 
   var tl = gsap.timeline();
@@ -111,7 +109,6 @@ if (window.sessionStorage.getItem('firstload') == null) {
       }
   });
 
-
   heroTextTL
       .add('start')
       .from(spTitle.chars,{
@@ -140,8 +137,6 @@ if (window.sessionStorage.getItem('firstload') == null) {
       },'start')
 
 }
-
-
 
 var tlHover = gsap.timeline({
   paused: true,

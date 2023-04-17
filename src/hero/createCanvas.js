@@ -19,26 +19,79 @@ function createCanvas() {
   });
   scene.start();
 
-  var tl = gsap.timeline();
-  tl.to(".hero-loader__txt span", {height: '100%',duration: 2});
-  tl.to('.hero-loader',{opacity:0,duration:.5});
-  tl.add('endload')
-  tl.to(scene.ringMesh.material,{opacity: .5,delay:1,duration:2},'endload')
-  tl.to(scene.ringMesh.position,{y: 0,duration:2},'endload')
-  tl.to(scene.clouds.material,{opacity: 1,duration:2},'endload-=0.5')
-      .add(()=> {
+  // var tl = gsap.timeline();
+  // tl.to(".hero-loader__txt span", {height: '100%',duration: 2});
+  // tl.to('.hero-loader',{opacity:0,duration:.5});
+  // tl.add('endload')
+  // tl.to(scene.ringMesh.material,{opacity: .5,delay:1,duration:2},'endload')
+  // tl.to(scene.ringMesh.position,{y: 0,duration:2},'endload')
+  // tl.to(scene.clouds.material,{opacity: 1,duration:2},'endload-=0.5')
+  //     .add(()=> {
+  //       for(let i = 0; i < 10; i++){
+  //         scene.updateSingleCloud(2.5,i,i*0.3,2);
+  //       }
+
+  //       for(let i = 10; i < 20; i++){
+  //         scene.updateSingleCloud(2.5,i,(i-10)*0.2,2);
+  //       }
+
+  //       for(let i = 20; i < 30; i++){
+  //         scene.updateSingleCloud(2.5,i,(i-20)*0.1,2);
+  //       }
+  //     },'endload-=0.5');
+
+  if (window.localStorage.getItem('firstload') == null) {
+
+    var tl = gsap.timeline();
+    tl.to(".hero-loader__txt span", {height: '100%',duration: 2});
+    tl.to('.hero-loader',{opacity:0,duration:.5});
+    tl.add('endload')
+    tl.to(scene.ringMesh.material,{opacity: .5,delay:1,duration:2},'endload')
+    tl.to(scene.ringMesh.position,{y: 0,duration:2},'endload')
+    tl.to(scene.clouds.material,{opacity: 1,duration:2},'endload-=0.5')
+    .add(()=> {
         for(let i = 0; i < 10; i++){
-          scene.updateSingleCloud(2.5,i,i*0.3,2);
+            scene.updateSingleCloud(2.5,i,i*0.3,2);
         }
 
         for(let i = 10; i < 20; i++){
-          scene.updateSingleCloud(2.5,i,(i-10)*0.2,2);
+            scene.updateSingleCloud(2.5,i,(i-10)*0.2,2);
         }
 
         for(let i = 20; i < 30; i++){
-          scene.updateSingleCloud(2.5,i,(i-20)*0.1,2);
+            scene.updateSingleCloud(2.5,i,(i-20)*0.1,2);
         }
-      },'endload-=0.5');
+    },'endload-=0.5');
+
+
+    window.localStorage.setItem('firstload','false');
+
+    } else {
+
+        var tl = gsap.timeline({
+            onStart: () => {
+                gsap.set('.hero-loader',{opacity:0});
+            }
+        });
+        tl.add('start')
+        tl.to(scene.ringMesh.material,{opacity: .5,delay:1,duration:2},'start')
+        tl.to(scene.ringMesh.position,{y: 0,duration:2},'start')
+        tl.to(scene.clouds.material,{opacity: 1,duration:2},'start')
+            .add(()=> {
+                for(let i = 0; i < 10; i++){
+                    scene.updateSingleCloud(2.5,i,i*0.3,2);
+                }
+
+                for(let i = 10; i < 20; i++){
+                    scene.updateSingleCloud(2.5,i,(i-10)*0.2,2);
+                }
+
+                for(let i = 20; i < 30; i++){
+                    scene.updateSingleCloud(2.5,i,(i-20)*0.1,2);
+                }
+            },'start');
+
+    }
 
   var tlHover = gsap.timeline({
     paused: true,

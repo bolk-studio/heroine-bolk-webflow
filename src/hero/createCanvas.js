@@ -110,10 +110,10 @@ function createCanvas() {
         opacity: 1,
         duration: 0.5
       })
-      .from("[navbar='home-hero']", {
-        y: "-50rem",
-        duration: 1
-      })
+      // .from("[navbar='home-hero']", {
+      //   y: "-50rem",
+      //   duration: 1
+      // })
       .from("[overline='home-hero']", { y: "300rem", duration: 1 }, "<50%")
       .from("[heading='home-hero']", { y: "500rem", duration: 1 }, "<")
       .from("[text='home-hero']", { y: "700rem", duration: 1 }, "<5%");

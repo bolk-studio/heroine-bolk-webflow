@@ -68,7 +68,7 @@ function createCanvas() {
 
   document.querySelector('.hero-enter').addEventListener('click',()=>{
 
-    gsap.set('html,body',{overflow:'initial'});
+    // gsap.set('html,body',{overflow:'initial'});
 
     scene.circle.init();
     scene.cone.init();
@@ -113,7 +113,6 @@ function createCanvas() {
       .from("[overline='home-hero']", { y: "300rem", duration: 1 }, "<50%")
       .from("[heading='home-hero']", { y: "500rem", duration: 1 }, "<")
       .from("[text='home-hero']", { y: "700rem", duration: 1 }, "<5%");
-    }
 
     /*HERO TEXT -> NO LONGER NEEDED
     let spTitle = new SplitText('.hero-bottom__title', { type: "chars" });

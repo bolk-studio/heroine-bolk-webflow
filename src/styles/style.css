@@ -83,6 +83,11 @@ html, body {
 .hero-enter .enter-image {
   width: 392rem;
 }
+@media (max-width: 768px) {
+  .hero-enter .enter-image {
+    width: 60vw;
+  }
+}
 .hero-artifact {
   position: absolute;
   width: 120rem;

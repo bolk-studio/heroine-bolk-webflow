@@ -27,7 +27,7 @@ html, body {
   align-items: center;
   justify-content: center;
   z-index: 99;
-  transition: all 1.5s;
+  /* transition: all 1.5s; */
   pointer-events: none;
 }
 .hero-loader__txt {

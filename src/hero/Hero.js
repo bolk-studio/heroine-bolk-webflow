@@ -486,6 +486,7 @@ export default class Hero {
         //VIDEO BG
         const videobg = document.querySelector( '.hero-video--1' );
 
+        videobg.setAttribute('crossorigin', 'anonymous');
         videobg.play();
         this.textureBG = new THREE.VideoTexture( videobg );
         this.textureBG.matrixAutoUpdate = false;

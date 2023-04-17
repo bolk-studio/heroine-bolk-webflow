@@ -105,7 +105,7 @@ function createCanvas() {
     gsap.set('.hero-enter',{display:'none'});
 
 
-    //HERO TEXT
+    /*HERO TEXT -> NO LONGER NEEDED
     let spTitle = new SplitText('.hero-bottom__title', { type: "chars" });
     let spSub = new SplitText('.hero-bottom__sub', { type: "chars" });
     let spText = new SplitText('.hero-bottom__text', { type: "lines" });
@@ -143,12 +143,7 @@ function createCanvas() {
           stagger: {
             each: 0.05
           }
-        },'start')
-
-
-
-
-
+        },'start')*/
 
   });
 

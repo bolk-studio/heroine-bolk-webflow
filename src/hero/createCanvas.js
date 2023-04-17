@@ -49,6 +49,8 @@ if (window.sessionStorage.getItem('firstload') == null) {
 
   gsap.set('.hero-loader',{opacity:0})
 
+  gsap.set('html,body',{overflow:'initial'});
+
   scene.circle.init();
   scene.cone.init();
   scene.donut.init();
@@ -166,8 +168,7 @@ window.addEventListener('resize',()=>{
 
 document.querySelector('.hero-enter').addEventListener('click',()=>{
 
-  gsap.set('html,body',{overflowY:'initial',overflowX:'hidden'});
-
+  gsap.set('html,body',{overflow:'initial'});
 
   scene.circle.init();
   scene.cone.init();

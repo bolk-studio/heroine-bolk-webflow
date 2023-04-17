@@ -104,7 +104,7 @@ function createCanvas() {
     gsap.to(scene.materialTemple,{opacity: 1,duration:3,delay:2})
     gsap.set('.hero-enter',{display:'none'});
 
-    let heroHome = gsap.timeline({ ease: "power1.inOut" });
+    let heroHome = gsap.timeline({ delay: 0.5, ease: "power1.inOut" });
     heroHome
       .to("[opacity-null]", {
         opacity: 1,

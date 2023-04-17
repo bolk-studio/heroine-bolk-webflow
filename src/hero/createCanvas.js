@@ -114,9 +114,9 @@ function createCanvas() {
         y: "-50rem",
         duration: 1
       })
-      .from("[overline='hero-home']", { y: "300rem", duration: 1 }, "<50%")
-      .from("[heading='hero-home']", { y: "500rem", duration: 1 }, "<")
-      .from("[text='hero-home']", { y: "700rem", duration: 1 }, "<5%");
+      .from("[overline='home-hero']", { y: "300rem", duration: 1 }, "<50%")
+      .from("[heading='home-hero']", { y: "500rem", duration: 1 }, "<")
+      .from("[text='home-hero']", { y: "700rem", duration: 1 }, "<5%");
 
     /*HERO TEXT -> NO LONGER NEEDED
     let spTitle = new SplitText('.hero-bottom__title', { type: "chars" });

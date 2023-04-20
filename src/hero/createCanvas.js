@@ -137,8 +137,9 @@ function createCanvas() {
         stagger: {
           each: 0.05
         }
-      }, 'start')
+      }, 'start');
 
+    play_audio();
   }
 
   var tlHover = gsap.timeline({

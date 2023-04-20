@@ -4,13 +4,14 @@ import Hero from "./Hero";
 
 gsap.registerPlugin(SplitText);
 
-function first_launch_site_sound() {
-  if (window.sessionStorage.getItem('firstload') == null) {
-    play_audio();
-  }
-}
-
 function createCanvas() {
+  let isFirstSession = true;
+
+  function first_launch_site_sound() {
+    if (isFirstSession) {
+      play_audio();
+    }
+  }
 
   gsap.set('.hero-ct', { height: window.innerHeight });
   gsap.set('html,body', { overflow: 'hidden' });
@@ -26,6 +27,7 @@ function createCanvas() {
   scene.start();
 
   if (window.sessionStorage.getItem('firstload') == null) {
+    isFirstSession = true;
 
     var tl = gsap.timeline();
     tl.to(".hero-loader__txt span", { height: '100%', duration: 2 });
@@ -52,6 +54,7 @@ function createCanvas() {
     window.sessionStorage.setItem('firstload', 'done');
 
   } else {
+    isFirstSession = false;
 
     gsap.set('.hero-loader', { opacity: 0 })
 

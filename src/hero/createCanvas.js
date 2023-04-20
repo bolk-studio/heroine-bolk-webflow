@@ -1,10 +1,14 @@
 import { gsap } from 'gsap';
 import { SplitText } from "gsap/SplitText";
 import Hero from "./Hero";
-import hero_audio from "./Hero";
 
 gsap.registerPlugin(SplitText);
 
+function first_launch_site_sound() {
+  if (window.sessionStorage.getItem('firstload') == null) {
+    play_audio();
+  }
+}
 
 function createCanvas() {
 

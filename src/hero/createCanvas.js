@@ -138,8 +138,6 @@ function createCanvas() {
           each: 0.05
         }
       }, 'start');
-
-    play_audio();
   }
 
   var tlHover = gsap.timeline({

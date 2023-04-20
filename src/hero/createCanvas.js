@@ -167,7 +167,7 @@ function createCanvas() {
   });
 
   document.querySelector('.hero-enter').addEventListener('click', () => {
-    play_audio();
+    //play_audio();
 
     gsap.set('html,body', { overflow: 'initial' });
 

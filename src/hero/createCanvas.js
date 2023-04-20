@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import { SplitText } from "gsap/SplitText";
 import Hero from "./Hero";
+import hero_audio from "./Hero";
 
 gsap.registerPlugin(SplitText);
 
@@ -167,7 +168,7 @@ function createCanvas() {
   });
 
   document.querySelector('.hero-enter').addEventListener('click', () => {
-    //play_audio();
+    first_launch_site_sound();
 
     gsap.set('html,body', { overflow: 'initial' });
 

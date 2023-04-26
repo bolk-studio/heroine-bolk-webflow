@@ -13,13 +13,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
           trigger: triggerElement,
           // trigger element - viewport
           start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-          ease: "linear"
+          end: "bottom center",
+          scrub: 1
+          //ease: "linear"
         }
       });
-      tl.to(targetElement, {
-        y: "-60rem",
+      tl.from(targetElement, {
+        y: "40rem",
         duration: 1
       });
     });
@@ -34,13 +34,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
           trigger: triggerElement,
           // trigger element - viewport
           start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-          ease: "linear"
+          end: "bottom center",
+          scrub: 1
+          //ease: "linear"
         }
       });
-      tl.to(targetElement, {
-        y: "-40rem",
+      tl.from(targetElement, {
+        y: "60rem",
         duration: 1
       });
     });
@@ -55,13 +55,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
           trigger: triggerElement,
           // trigger element - viewport
           start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-          ease: "linear"
+          end: "bottom center",
+          scrub: 1
+          //ease: "linear"
         }
       });
-      tl.to(targetElement, {
-        y: "-60rem",
+      tl.from(targetElement, {
+        y: "40rem",
         duration: 1
       });
     });

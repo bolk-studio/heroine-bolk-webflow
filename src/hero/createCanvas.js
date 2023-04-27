@@ -26,7 +26,9 @@ function createCanvas() {
   });
   scene.start();
 
-  if (window.sessionStorage.getItem('firstload') == null) {
+  let currentUrl = window.location.origin
+
+  if (window.sessionStorage.getItem('firstload') == null || currentUrl == 'https://webflow.com') {
     isFirstSession = true;
 
     var tl = gsap.timeline();

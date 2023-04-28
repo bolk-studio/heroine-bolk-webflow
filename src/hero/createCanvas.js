@@ -56,7 +56,9 @@ function createCanvas() {
     window.sessionStorage.setItem('firstload', 'done');
   }
 
-  if(currentUrl == 'https://webflow.com'){
+  console.log('currentUrl', currentUrl);
+
+  if(currentUrl == 'webflow.com'){
     launchWebGL();
   } else {
     if (window.sessionStorage.getItem('firstload') == null) {

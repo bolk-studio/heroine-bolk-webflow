@@ -58,7 +58,7 @@ function createCanvas() {
 
   console.log('currentUrl', currentUrl);
 
-  if(currentUrl == 'webflow.com'){
+  if(currentUrl == 'https://heroine-paris-bolk.webflow.io'){
     launchWebGL();
   } else {
     if (window.sessionStorage.getItem('firstload') == null) {

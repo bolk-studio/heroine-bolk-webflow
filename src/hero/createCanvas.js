@@ -26,9 +26,8 @@ function createCanvas() {
   });
   scene.start();
 
-  let currentUrl = window.location.origin
-
-  function launchWebGL() {
+  // Intro with ENTER button for first time viewing in current session
+  function introWithButton() {
     isFirstSession = true;
 
     var tl = gsap.timeline();
@@ -56,16 +55,17 @@ function createCanvas() {
     window.sessionStorage.setItem('firstload', 'done');
   }
 
-  console.log('currentUrl', currentUrl);
-
+  // Check if user is on Webflow, to display the website on the iframe of the Webflow showcase otherwise sessionStorage causes an error
+  let currentUrl = window.location.origin
   if(currentUrl == 'https://heroine-paris-bolk.webflow.io'){
-    launchWebGL();
+    introWithButton();
   } else {
     if (window.sessionStorage.getItem('firstload') == null) {
 
-      launchWebGL();
+      introWithButton();
   
     } else {
+      // Intro without ENTER button for second time viewing in current session
       isFirstSession = false;
   
       gsap.set('.hero-loader', { opacity: 0 })

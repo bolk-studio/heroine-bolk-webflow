@@ -28,7 +28,7 @@ function createCanvas() {
 
   let currentUrl = window.location.origin
 
-  if (window.sessionStorage.getItem('firstload') == null || currentUrl == 'https://webflow.com') {
+  if (currentUrl == 'https://webflow.com' || window.sessionStorage.getItem('firstload') == null) {
     isFirstSession = true;
 
     var tl = gsap.timeline();

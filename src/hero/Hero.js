@@ -413,6 +413,20 @@ export default class Hero {
 
     }
 
+    fadeInImages() {
+
+        this.imagesMesh.forEach(m=>{
+
+            gsap.to(m.material,{
+                opacity:1,
+                delay:1,
+                duration:2
+            })
+
+        });
+
+    }
+
     addImages() {
         const textureLoader = new THREE.TextureLoader();
 
@@ -434,7 +448,7 @@ export default class Hero {
             const tgeometry = new THREE.PlaneGeometry( 1, 1);
             const tmaterial = new THREE.MeshBasicMaterial({
                 map:imgT,
-
+                opacity: 0,
                 wireframe: false,
                 transparent: true
             });
@@ -487,7 +501,7 @@ export default class Hero {
         const videobg = document.querySelector( '.hero-video--1' );
         //videobg.setAttribute('crossorigin', 'anonymous');
         videobg.play();
-        
+
         this.textureBG = new THREE.VideoTexture( videobg );
         this.textureBG.matrixAutoUpdate = false;
 
@@ -546,7 +560,7 @@ export default class Hero {
     addCircle() {
 
         const geometry = new THREE.CircleGeometry( 1, 128 );
-        const material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0.25 } );
+        const material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0 } );
         this.circleMesh = new THREE.Mesh( geometry, material );
         this.circleMesh.position.set(0,0,.5);
         this.circleMesh.scale.set(48,48,1);

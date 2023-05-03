@@ -402,4 +402,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
     methodpillier6.to("[pillar='five']", { y: "0vh" }, 0);
     methodpillier6.to(".method_pillars-link", { x: "-144.5vw" }, 0);
   }
+
+
+  // is pillier out of screen
+  const pilliers = gsap.timeline({
+    defaults: { ease: "power1.out" },
+    scrollTrigger: {
+      trigger: ".section-methode_piliers",
+      start: "top bottom",
+      end: "top bottom-=200",
+      scrub: 0.5
+    }
+  });
+
+  pilliers.from(".section-methode_piliers", { opacity: 0 }, 0);
+
 });

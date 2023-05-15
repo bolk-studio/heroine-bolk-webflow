@@ -1,18 +1,18 @@
 import * as THREE from 'three'
-import {gsap} from 'gsap';
+import { gsap } from 'gsap';
 import Artifact from "./Artifact";
 
 export default class Hero {
 
-    constructor(options){
+    constructor(options) {
 
         //VIDEO BG
-        this.videobgAR = 2880/1434;
-        this.videotempleAR = 1595/1080;
+        this.videobgAR = 2880 / 1434;
+        this.videotempleAR = 1595 / 1080;
 
         this.time = 0;
         let ar = [];
-        for ( let i = 0; i < 30; i ++ ) {
+        for (let i = 0; i < 30; i++) {
             ar.push(Math.random())
         };
 
@@ -26,15 +26,15 @@ export default class Hero {
         this.container = options.dom;
         this.scene = new THREE.Scene();
         this.artifactScene = new THREE.Scene();
-        this.scene.background = new THREE.Color( 0xffffff );
+        this.scene.background = new THREE.Color(0xffffff);
         this.ripplesScene = new THREE.Scene();
         this.sceneFinal = new THREE.Scene();
         this.width = window.innerWidth;
         this.height = window.innerHeight;
         this.ringWidth = (this.width / 6);
-        this.camera = new THREE.PerspectiveCamera( 70, this.width/this.height, 100, 2000 );
+        this.camera = new THREE.PerspectiveCamera(70, this.width / this.height, 100, 2000);
         this.camera.position.z = 600;
-        this.camera.fov = 2*Math.atan( (this.height/2)/600 )* (180/Math.PI);
+        this.camera.fov = 2 * Math.atan((this.height / 2) / 600) * (180 / Math.PI);
 
         this.max = 100;
         this.currentWave = 0;
@@ -46,10 +46,10 @@ export default class Hero {
             lastTime: null,
         };
 
-        this.renderer = new THREE.WebGLRenderer( {
+        this.renderer = new THREE.WebGLRenderer({
             antialias: false,
             alpha: true
-        } );
+        });
 
         const opt = {
             type: THREE.HalfFloatType
@@ -58,16 +58,16 @@ export default class Hero {
         this.baseTexture = new THREE.WebGLRenderTarget(
             this.width,
             this.height, {
-                minFilter: THREE.LinearFilter,
-                magFilter: THREE.LinearFilter,
-                format: THREE.RGBAFormat
-            }
+            minFilter: THREE.LinearFilter,
+            magFilter: THREE.LinearFilter,
+            format: THREE.RGBAFormat
+        }
         );
-        this.renderTargetScene = new THREE.WebGLRenderTarget(this.width, this.height,{});
-        this.renderTargetArtifact = new THREE.WebGLRenderTarget(this.width, this.height,{});
+        this.renderTargetScene = new THREE.WebGLRenderTarget(this.width, this.height, {});
+        this.renderTargetArtifact = new THREE.WebGLRenderTarget(this.width, this.height, {});
 
-        this.renderer.setPixelRatio( this.devicePixelRatio );
-        this.container.appendChild( this.renderer.domElement );
+        this.renderer.setPixelRatio(this.devicePixelRatio);
+        this.container.appendChild(this.renderer.domElement);
 
     }
 
@@ -83,39 +83,39 @@ export default class Hero {
 
     destroy() {
         this.container.innerHTML = '';
-        cancelAnimationFrame( this.raf );
+        cancelAnimationFrame(this.raf);
     }
 
-    setupResize(){
-        window.addEventListener('resize',this.resize.bind(this));
+    setupResize() {
+        window.addEventListener('resize', this.resize.bind(this));
     }
 
-    resize(){
+    resize() {
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-        this.renderer.setSize( this.width,this.height );
-        this.camera.aspect = this.width/this.height;
-        this.camera.fov = 2*Math.atan( (this.height/2)/600 )* (180/Math.PI);
+        this.renderer.setSize(this.width, this.height);
+        this.camera.aspect = this.width / this.height;
+        this.camera.fov = 2 * Math.atan((this.height / 2) / 600) * (180 / Math.PI);
         this.camera.updateProjectionMatrix();
 
-        this.baseTexture.setSize(this.width,this.height);
-        this.renderTargetScene.setSize(this.width,this.height);
-        this.renderTargetArtifact.setSize(this.width,this.height);
-        this.finalMESH.scale.set(this.width,this.height,1);
+        this.baseTexture.setSize(this.width, this.height);
+        this.renderTargetScene.setSize(this.width, this.height);
+        this.renderTargetArtifact.setSize(this.width, this.height);
+        this.finalMESH.scale.set(this.width, this.height, 1);
 
         if (typeof (this.backgroundMesh) != "undefined") {
 
-            this.ringWidth = Math.max(160,(this.width / 6));
-            this.ringMesh.scale.set(this.ringWidth,this.ringWidth,1);
-            this.backgroundMesh.scale.set(this.width,this.height,1);
+            this.ringWidth = Math.max(160, (this.width / 6));
+            this.ringMesh.scale.set(this.ringWidth, this.ringWidth, 1);
+            this.backgroundMesh.scale.set(this.width, this.height, 1);
 
 
             this.templeMesh.scale.set(this.width, this.height, 1);
 
 
 
-            this.gradient.scale.set(this.width,400,1);
-            this.gradient.position.set(0,-(this.height/2.),5);
+            this.gradient.scale.set(this.width, 400, 1);
+            this.gradient.position.set(0, -(this.height / 2.), 5);
 
             this.sizeVideoAsCover();
 
@@ -129,15 +129,15 @@ export default class Hero {
 
     sizeVideoAsCover() {
 
-        var aspect = this.width/this.height;
+        var aspect = this.width / this.height;
 
-        if ( aspect < this.videobgAR ) {
-            this.textureBG.matrix.setUvTransform( 0, 0, aspect / this.videobgAR, 1, 0, 0.5, 0.5 );
+        if (aspect < this.videobgAR) {
+            this.textureBG.matrix.setUvTransform(0, 0, aspect / this.videobgAR, 1, 0, 0.5, 0.5);
         } else {
-            this.textureBG.matrix.setUvTransform( 0, 0, 1, this.videobgAR / aspect, 0, 0.5, 0.5 );
+            this.textureBG.matrix.setUvTransform(0, 0, 1, this.videobgAR / aspect, 0, 0.5, 0.5);
         }
 
-        if ( aspect < this.videotempleAR ) {
+        if (aspect < this.videotempleAR) {
             var scaleFactor = aspect / this.videotempleAR;
             this.textureTemple.matrix.setUvTransform(0, 0, scaleFactor, 1, 0, 0.5, 0.5);
         } else {
@@ -150,25 +150,25 @@ export default class Hero {
 
     }
 
-    addRipples(){
+    addRipples() {
 
-        const geometry = new THREE.PlaneGeometry( 32, 32, 1 );
+        const geometry = new THREE.PlaneGeometry(32, 32, 1);
         this.ripplesMeshes = [];
 
 
         for (let i = 0; i < this.max; i++) {
-            let m = new THREE.MeshBasicMaterial( {
+            let m = new THREE.MeshBasicMaterial({
                 map: new THREE.TextureLoader().load('https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643d011d258bc4080dcc9d1a_cloud10-4.png'),
                 transparent: true,
                 blending: THREE.AdditiveBlending,
                 depthTest: false,
                 depthWrite: true
-            } );
+            });
 
             let mesh = new THREE.Mesh(geometry, m);
-            mesh.rotation.z = 2*Math.PI*Math.random();
+            mesh.rotation.z = 2 * Math.PI * Math.random();
             mesh.visible = false;
-            this.ripplesScene.add( mesh );
+            this.ripplesScene.add(mesh);
             this.ripplesMeshes.push(mesh);
 
         }
@@ -182,7 +182,7 @@ export default class Hero {
 
         console.log(VS)
 
-        const finalGeometry = new THREE.PlaneGeometry(1,1);
+        const finalGeometry = new THREE.PlaneGeometry(1, 1);
         const finalMaterial = new THREE.ShaderMaterial({
             side: THREE.DoubleSide,
             uniforms: {
@@ -193,18 +193,18 @@ export default class Hero {
 
                 resolution: { value: new THREE.Vector2(this.width, this.height) },
             },
-            vertexShader : VS,
-            fragmentShader : FS,
+            vertexShader: VS,
+            fragmentShader: FS,
             transparent: true
         });
 
-        this.finalMESH = new THREE.Mesh(finalGeometry,finalMaterial);
+        this.finalMESH = new THREE.Mesh(finalGeometry, finalMaterial);
 
         this.sceneFinal.add(this.finalMESH);
 
     }
 
-    setNewWave(x,y,index) {
+    setNewWave(x, y, index) {
         let m = this.ripplesMeshes[index];
         m.visible = true;
         m.position.x = x;
@@ -219,18 +219,18 @@ export default class Hero {
 
 
 
-        if (Math.abs(this.mouse.current.x - this.mouse.last.x)<4 && Math.abs(this.mouse.current.y - this.mouse.last.y)<4) {
+        if (Math.abs(this.mouse.current.x - this.mouse.last.x) < 4 && Math.abs(this.mouse.current.y - this.mouse.last.y) < 4) {
 
         } else {
             this.currentWave = (this.currentWave + 1) % this.max;
-            this.setNewWave((this.mouse.current.x - this.width/2),(this.height/2 - this.mouse.current.y),this.currentWave);
+            this.setNewWave((this.mouse.current.x - this.width / 2), (this.height / 2 - this.mouse.current.y), this.currentWave);
         }
 
     }
 
-    mouseMovement(){
+    mouseMovement() {
 
-        window.addEventListener( 'mousemove', (e)=>{
+        window.addEventListener('mousemove', (e) => {
 
             const mousePos = {
                 x: e.targetTouches ? e.targetTouches[0].clientX : e.clientX,
@@ -244,42 +244,42 @@ export default class Hero {
             this.trackMousePos();
 
 
-        }, false );
+        }, false);
     }
 
-    getClouds(mat,quantity) {
+    getClouds(mat, quantity) {
 
-        let randomizeMatrix = (matrix,i,rand) => {
+        let randomizeMatrix = (matrix, i, rand) => {
 
             const position = new THREE.Vector3();
             const rotation = new THREE.Euler();
             const quaternion = new THREE.Quaternion();
             const scale = new THREE.Vector3();
 
-            position.x = i/quantity * rand[i] * 8 - 4;
-            position.z = -1. + i/quantity * rand[i] * 4 - 2;
+            position.x = i / quantity * rand[i] * 8 - 4;
+            position.z = -1. + i / quantity * rand[i] * 4 - 2;
 
             scale.x = scale.y = scale.z = rand[i] * 4;
 
-            return matrix.compose( position, quaternion, scale );
+            return matrix.compose(position, quaternion, scale);
 
         };
 
-        let clouds = new THREE.InstancedMesh( new THREE.PlaneGeometry( 1, 1 ), mat, quantity );
-        clouds.instanceMatrix.setUsage( THREE.DynamicDrawUsage ); // will be updated every frame
+        let clouds = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, 1), mat, quantity);
+        clouds.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
 
 
-        for ( let i = 0; i < quantity; i ++ ) {
+        for (let i = 0; i < quantity; i++) {
             const matrix = new THREE.Matrix4();
-            randomizeMatrix( matrix,i,this.myRand );
-            clouds.setMatrixAt( i, matrix );
+            randomizeMatrix(matrix, i, this.myRand);
+            clouds.setMatrixAt(i, matrix);
         }
 
 
 
 
 
-        clouds.scale.set(this.height/4.5,this.height/4.5,1);
+        clouds.scale.set(this.height / 4.5, this.height / 4.5, 1);
         clouds.position.set(0, -this.height, 100)
         clouds.rotation.set(0, 0, 0);
 
@@ -289,7 +289,7 @@ export default class Hero {
 
     }
 
-    getStClouds(mat,quantity) {
+    getStClouds(mat, quantity) {
 
         let randomizeMatrix = function () {
 
@@ -298,27 +298,27 @@ export default class Hero {
             const quaternion = new THREE.Quaternion();
             const scale = new THREE.Vector3();
 
-            return function ( matrix ) {
+            return function (matrix) {
 
                 position.x = Math.random() * 8 - 4;
                 position.z = -1. + Math.random() * 4 - 2;
                 scale.x = scale.y = scale.z = Math.random() * 2;
-                matrix.compose( position, quaternion, scale );
+                matrix.compose(position, quaternion, scale);
 
             };
 
         }();
 
-        let clouds = new THREE.InstancedMesh( new THREE.PlaneGeometry( 1, 1 ), mat, quantity );
+        let clouds = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, 1), mat, quantity);
 
-        for ( let i = 0; i < quantity; i ++ ) {
+        for (let i = 0; i < quantity; i++) {
             const matrix = new THREE.Matrix4();
-            randomizeMatrix( matrix );
-            clouds.setMatrixAt( i, matrix );
+            randomizeMatrix(matrix);
+            clouds.setMatrixAt(i, matrix);
         }
 
-        clouds.scale.set(this.height/4.5,this.height/4.5,1);
-        clouds.position.set(0, -(this.height/2), 100)
+        clouds.scale.set(this.height / 4.5, this.height / 4.5, 1);
+        clouds.position.set(0, -(this.height / 2), 100)
         clouds.rotation.set(0, 0, 0);
         clouds.name = 'sclouds';
 
@@ -328,18 +328,18 @@ export default class Hero {
 
     addClouds() {
 
-        let cloudTexture = new THREE.TextureLoader().load( 'https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643d011d258bc4080dcc9d1a_cloud10-4.png' );
+        let cloudTexture = new THREE.TextureLoader().load('https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643d011d258bc4080dcc9d1a_cloud10-4.png');
 
-        let material = new THREE.MeshBasicMaterial( {
+        let material = new THREE.MeshBasicMaterial({
             map: cloudTexture,
             transparent: true,
             depthWrite: false,
             depthTest: true,
             side: THREE.DoubleSide,
             opacity: 0
-        } );
+        });
 
-        this.clouds = this.getClouds(material,this.cloudsAmount);
+        this.clouds = this.getClouds(material, this.cloudsAmount);
         this.mainscene.add(this.clouds);
 
         this.addGradient();
@@ -353,7 +353,7 @@ export default class Hero {
 
         this.gmaterial = new THREE.ShaderMaterial({
             uniforms: {
-                alpha : {value: 1},
+                alpha: { value: 1 },
             },
             side: THREE.DoubleSide,
             vertexShader: VS,
@@ -361,10 +361,10 @@ export default class Hero {
             transparent: true,
         });
 
-        const geometry = new THREE.PlaneGeometry( 1, 1, 32 );
-        this.gradient = new THREE.Mesh( geometry, this.gmaterial );
-        this.gradient.scale.set(this.width,400,1);
-        this.gradient.position.set(0,-(this.height/2.),5);
+        const geometry = new THREE.PlaneGeometry(1, 1, 32);
+        this.gradient = new THREE.Mesh(geometry, this.gmaterial);
+        this.gradient.scale.set(this.width, 400, 1);
+        this.gradient.position.set(0, -(this.height / 2.), 5);
         this.mainscene.add(this.gradient);
 
     }
@@ -372,7 +372,7 @@ export default class Hero {
     addArtifacts() {
 
         this.circle = new Artifact({
-            url : "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2aa4cc57c21cd0bfb_cerchio-smaller.txt",
+            url: "./static/artifacts/cerchio-smaller.json",//"https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2aa4cc57c21cd0bfb_cerchio-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--circle',
@@ -381,7 +381,7 @@ export default class Hero {
         this.artifactGroup.add(this.circle.artifact);
 
         this.cone = new Artifact({
-            url : "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2835c89b0939709cb_cone-smaller.txt",
+            url: "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2835c89b0939709cb_cone-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--cone',
@@ -390,7 +390,7 @@ export default class Hero {
         this.artifactGroup.add(this.cone.artifact);
 
         this.donut = new Artifact({
-            url : "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd29a03d47359ae1bf6_donut-smaller.txt",
+            url: "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd29a03d47359ae1bf6_donut-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--donut',
@@ -399,7 +399,7 @@ export default class Hero {
         this.artifactGroup.add(this.donut.artifact);
 
         this.halfcircle = new Artifact({
-            url : "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd1a6520881679e8cbe_half-circl-smaller.txt",
+            url: "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd1a6520881679e8cbe_half-circl-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--halfcircle',
@@ -415,12 +415,12 @@ export default class Hero {
 
     fadeInImages() {
 
-        this.imagesMesh.forEach(m=>{
+        this.imagesMesh.forEach(m => {
 
-            gsap.to(m.material,{
-                opacity:1,
-                delay:1,
-                duration:2
+            gsap.to(m.material, {
+                opacity: 1,
+                delay: 1,
+                duration: 2
             })
 
         });
@@ -436,31 +436,31 @@ export default class Hero {
 
 
 
-        this.imagesStore = this.images.map(img=>{
+        this.imagesStore = this.images.map(img => {
 
 
 
-            const imgT = textureLoader.load( img.src );
+            const imgT = textureLoader.load(img.src);
 
             imgT.magFilter = THREE.NearestFilter;
             imgT.minFilter = THREE.NearestFilter;
 
-            const tgeometry = new THREE.PlaneGeometry( 1, 1);
+            const tgeometry = new THREE.PlaneGeometry(1, 1);
             const tmaterial = new THREE.MeshBasicMaterial({
-                map:imgT,
+                map: imgT,
                 opacity: 0,
                 wireframe: false,
                 transparent: true
             });
 
 
-            let mesh = new THREE.Mesh( tgeometry, tmaterial );
+            let mesh = new THREE.Mesh(tgeometry, tmaterial);
 
 
             if (img.classList.contains('enter-image')) {
-                this.mainscene.add( mesh );
+                this.mainscene.add(mesh);
             } else {
-                this.scene.add( mesh );
+                this.scene.add(mesh);
             }
 
             this.imagesMesh.push(mesh);
@@ -478,15 +478,15 @@ export default class Hero {
 
     setImagesSizePos() {
 
-        this.imagesStore.forEach(o=>{
+        this.imagesStore.forEach(o => {
 
             let bounds = o.img.getBoundingClientRect();
             var top = bounds.top + window.scrollY;
 
             if (o.mesh != null) {
-                o.mesh.position.y = window.scrollY - top + this.height/2 - bounds.height/2;
-                o.mesh.position.x = bounds.left - this.width/2 + bounds.width/2;
-                o.mesh.scale.set(bounds.width,bounds.height,1);
+                o.mesh.position.y = window.scrollY - top + this.height / 2 - bounds.height / 2;
+                o.mesh.position.x = bounds.left - this.width / 2 + bounds.width / 2;
+                o.mesh.scale.set(bounds.width, bounds.height, 1);
             }
 
         });
@@ -498,25 +498,25 @@ export default class Hero {
 
     addVideoBG() {
         //VIDEO BG
-        const videobg = document.querySelector( '.hero-video--1' );
+        const videobg = document.querySelector('.hero-video--1');
         //videobg.setAttribute('crossorigin', 'anonymous');
         videobg.play();
 
-        this.textureBG = new THREE.VideoTexture( videobg );
+        this.textureBG = new THREE.VideoTexture(videobg);
         this.textureBG.matrixAutoUpdate = false;
 
         this.textureBG.minFilter = THREE.LinearFilter;
         this.textureBG.magFilter = THREE.LinearFilter;
         this.textureBG.format = THREE.RGBAFormat;
 
-        this.materialBG = new THREE.MeshBasicMaterial({ map:this.textureBG, transparent: true });
+        this.materialBG = new THREE.MeshBasicMaterial({ map: this.textureBG, transparent: true });
         this.materialBG.needsUpdate = true;
 
-        const geometry = new THREE.PlaneGeometry( 1, 1, 32 );
-        this.backgroundMesh = new THREE.Mesh( geometry, this.materialBG );
-        this.backgroundMesh.scale.set(this.width,this.height,1);
+        const geometry = new THREE.PlaneGeometry(1, 1, 32);
+        this.backgroundMesh = new THREE.Mesh(geometry, this.materialBG);
+        this.backgroundMesh.scale.set(this.width, this.height, 1);
 
-        this.mainscene.add( this.backgroundMesh );
+        this.mainscene.add(this.backgroundMesh);
 
 
     }
@@ -524,52 +524,52 @@ export default class Hero {
 
     addVideoTemple() {
         //VIDEO
-        const videotemple = document.querySelector( '.hero-video--2' );
+        const videotemple = document.querySelector('.hero-video--2');
         //videotemple.setAttribute('crossorigin', 'anonymous');
         videotemple.play();
 
-        this.textureTemple = new THREE.VideoTexture( videotemple );
+        this.textureTemple = new THREE.VideoTexture(videotemple);
         this.textureTemple.matrixAutoUpdate = false;
         this.textureTemple.minFilter = THREE.LinearFilter;
         this.textureTemple.magFilter = THREE.LinearFilter;
         this.textureTemple.format = THREE.RGBAFormat;
 
-        this.materialTemple = new THREE.MeshBasicMaterial({ map:this.textureTemple,opacity:0, transparent: true });
+        this.materialTemple = new THREE.MeshBasicMaterial({ map: this.textureTemple, opacity: 0, transparent: true });
         this.materialTemple.needsUpdate = true;
 
-        const geometry = new THREE.PlaneGeometry( 1, 1, 32 );
-        this.templeMesh = new THREE.Mesh( geometry, this.materialTemple );
-        this.templeMesh.position.set(0,-this.height,0);
+        const geometry = new THREE.PlaneGeometry(1, 1, 32);
+        this.templeMesh = new THREE.Mesh(geometry, this.materialTemple);
+        this.templeMesh.position.set(0, -this.height, 0);
 
-        this.mainscene.add( this.templeMesh );
+        this.mainscene.add(this.templeMesh);
     }
 
     addRing() {
 
 
-        const ringGeometry = new THREE.RingGeometry( 1, 1.35, 128 );
-        const ringMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0. } );
+        const ringGeometry = new THREE.RingGeometry(1, 1.35, 128);
+        const ringMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0. });
 
 
-        this.ringMesh = new THREE.Mesh( ringGeometry, ringMaterial );
-        this.ringMesh.position.set(0,-100,1);
-        this.mainscene.add( this.ringMesh );
+        this.ringMesh = new THREE.Mesh(ringGeometry, ringMaterial);
+        this.ringMesh.position.set(0, -100, 1);
+        this.mainscene.add(this.ringMesh);
 
     }
 
     addCircle() {
 
-        const geometry = new THREE.CircleGeometry( 1, 128 );
-        const material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0 } );
-        this.circleMesh = new THREE.Mesh( geometry, material );
-        this.circleMesh.position.set(0,0,.5);
-        this.circleMesh.scale.set(48,48,1);
-        this.mainscene.add( this.circleMesh );
+        const geometry = new THREE.CircleGeometry(1, 128);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0 });
+        this.circleMesh = new THREE.Mesh(geometry, material);
+        this.circleMesh.position.set(0, 0, .5);
+        this.circleMesh.scale.set(48, 48, 1);
+        this.mainscene.add(this.circleMesh);
 
     }
 
 
-    addObjects(){
+    addObjects() {
 
 
         this.addVideoBG();
@@ -588,15 +588,15 @@ export default class Hero {
 
     updateClouds() {
 
-        if ( this.clouds ) {
+        if (this.clouds) {
 
             let dummy = new THREE.Object3D();
             let mat4 = new THREE.Matrix4();
 
-            let t = this.clock.getDelta()*0.05;
+            let t = this.clock.getDelta() * 0.05;
 
 
-            for(let i = 0; i < this.cloudsAmount; i++){
+            for (let i = 0; i < this.cloudsAmount; i++) {
 
                 this.clouds.getMatrixAt(i, mat4);
                 mat4.decompose(dummy.position, dummy.quaternion, dummy.scale);
@@ -613,33 +613,33 @@ export default class Hero {
         }
     }
 
-    updateSingleCloud(value,i,delay,duration) {
+    updateSingleCloud(value, i, delay, duration) {
 
-        if ( this.clouds ) {
+        if (this.clouds) {
 
             let dummy = new THREE.Object3D();
             let mat4 = new THREE.Matrix4();
 
 
 
-                this.clouds.getMatrixAt(i, mat4);
-                mat4.decompose(dummy.position, dummy.quaternion, dummy.scale);
+            this.clouds.getMatrixAt(i, mat4);
+            mat4.decompose(dummy.position, dummy.quaternion, dummy.scale);
 
 
-                gsap.to(dummy.position,{
-                    y: this.myRand[i]*value,
-                    delay:delay,
-                    duration: duration,
-                    onUpdate: () => {
+            gsap.to(dummy.position, {
+                y: this.myRand[i] * value,
+                delay: delay,
+                duration: duration,
+                onUpdate: () => {
 
-                        dummy.updateMatrix();
+                    dummy.updateMatrix();
 
 
-                        this.clouds.setMatrixAt(i, dummy.matrix);
-                        this.clouds.instanceMatrix.needsUpdate = true;
+                    this.clouds.setMatrixAt(i, dummy.matrix);
+                    this.clouds.instanceMatrix.needsUpdate = true;
 
-                    }
-                })
+                }
+            })
 
         }
     }
@@ -647,7 +647,7 @@ export default class Hero {
 
 
 
-    render(){
+    render() {
 
         this.updateClouds();
         this.setImagesSizePos();
@@ -658,30 +658,30 @@ export default class Hero {
 
 
         this.renderer.setRenderTarget(this.baseTexture);
-        this.renderer.render(this.ripplesScene,this.camera);
+        this.renderer.render(this.ripplesScene, this.camera);
         this.finalMESH.material.uniforms.uDisplacement.value = this.baseTexture.texture;
 
         this.renderer.setRenderTarget(null);
         this.renderer.clear();
 
-        this.renderer.setRenderTarget( this.renderTargetScene);
-        this.renderer.render(this.scene,this.camera);
+        this.renderer.setRenderTarget(this.renderTargetScene);
+        this.renderer.render(this.scene, this.camera);
         this.finalMESH.material.uniforms['uTexture'].value = this.renderTargetScene.texture;
 
 
 
         this.renderer.setRenderTarget(null);
 
-        this.renderer.render(this.sceneFinal,this.camera);
+        this.renderer.render(this.sceneFinal, this.camera);
 
 
 
-        this.ripplesMeshes.forEach(mesh=>{
+        this.ripplesMeshes.forEach(mesh => {
             if (mesh.visible) {
                 mesh.rotation.z += 0.02;
                 mesh.material.opacity *= 0.96;
-                mesh.scale.x = 0.98* mesh.scale.x + 0.2;
-                mesh.scale.y = 0.98* mesh.scale.y + 0.2;
+                mesh.scale.x = 0.98 * mesh.scale.x + 0.2;
+                mesh.scale.y = 0.98 * mesh.scale.y + 0.2;
                 if (mesh.material.opacity < 0.02) {
                     mesh.visible = false;
                 }

@@ -159,7 +159,7 @@ export default class Hero {
 
         for (let i = 0; i < this.max; i++) {
             let m = new THREE.MeshBasicMaterial({
-                map: new THREE.TextureLoader().load('https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643d011d258bc4080dcc9d1a_cloud10-4.png'),
+                map: new THREE.TextureLoader().load(CDN_URL + "/static/textures/cloud10-4.png"), //'https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643d011d258bc4080dcc9d1a_cloud10-4.png'),
                 transparent: true,
                 blending: THREE.AdditiveBlending,
                 depthTest: false,
@@ -329,7 +329,7 @@ export default class Hero {
 
     addClouds() {
 
-        let cloudTexture = new THREE.TextureLoader().load('https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643d011d258bc4080dcc9d1a_cloud10-4.png');
+        let cloudTexture = new THREE.TextureLoader().load(CDN_URL + "/static/textures/cloud10-4.png"); //'https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643d011d258bc4080dcc9d1a_cloud10-4.png');
 
         let material = new THREE.MeshBasicMaterial({
             map: cloudTexture,
@@ -373,7 +373,7 @@ export default class Hero {
     addArtifacts() {
 
         this.circle = new Artifact({
-            url: CDN_URL + "/static/artifacts/cerchio-smaller.json",//"https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2aa4cc57c21cd0bfb_cerchio-smaller.txt",
+            url: CDN_URL + "/static/artifacts/cerchio-smaller.json", //"https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2aa4cc57c21cd0bfb_cerchio-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--circle',
@@ -382,7 +382,7 @@ export default class Hero {
         this.artifactGroup.add(this.circle.artifact);
 
         this.cone = new Artifact({
-            url: "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2835c89b0939709cb_cone-smaller.txt",
+            url: CDN_URL + "/static/artifacts/cone-smaller.json", //"https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2835c89b0939709cb_cone-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--cone',
@@ -391,7 +391,7 @@ export default class Hero {
         this.artifactGroup.add(this.cone.artifact);
 
         this.donut = new Artifact({
-            url: "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd29a03d47359ae1bf6_donut-smaller.txt",
+            url: CDN_URL + "/static/artifacts/donut-smaller.json", //"https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd29a03d47359ae1bf6_donut-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--donut',
@@ -400,7 +400,7 @@ export default class Hero {
         this.artifactGroup.add(this.donut.artifact);
 
         this.halfcircle = new Artifact({
-            url: "https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd1a6520881679e8cbe_half-circl-smaller.txt",
+            url: CDN_URL + "/static/artifacts/half-circl-smaller.json", //"https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd1a6520881679e8cbe_half-circl-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--halfcircle',

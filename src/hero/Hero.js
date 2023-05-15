@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { gsap } from 'gsap';
 import Artifact from "./Artifact";
 
+const CDN_URL = "https://cdn.jsdelivr.net/gh/bolk-studio/heroine-bolk-webflow@v.1.0.5";
 export default class Hero {
 
     constructor(options) {
@@ -372,7 +373,7 @@ export default class Hero {
     addArtifacts() {
 
         this.circle = new Artifact({
-            url: "./static/artifacts/cerchio-smaller.json",//"https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2aa4cc57c21cd0bfb_cerchio-smaller.txt",
+            url: CDN_URL + "/static/artifacts/cerchio-smaller.json",//"https://uploads-ssl.webflow.com/643cf6410db5ef686fbc70fe/643cffd2aa4cc57c21cd0bfb_cerchio-smaller.txt",
             height: this.height,
             width: this.width,
             hoverEl: '.hero-artifact--circle',

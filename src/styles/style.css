@@ -215,19 +215,6 @@ body {
   visibility: hidden;
 }
 
-.hero-video-wrapper--2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-}
-
-.hero-video--2 {
-  width: 100%;
-  height: 100%;
-}
-
 .w-image {
   opacity: 0;
 }

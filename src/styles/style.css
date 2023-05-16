@@ -1,9 +1,11 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
   /* overflow-x: hidden !important; */
 }
+
 #hero-canvas {
   position: absolute;
   z-index: 0;
@@ -12,10 +14,12 @@ html, body {
   width: 100vw;
   height: 100vh;
 }
+
 .hero-ct {
   position: relative;
   height: 100vh;
 }
+
 /* .hero-loader is set on Webflow to fix a glitch on load {
   position: fixed;
   top: 0;
@@ -36,6 +40,7 @@ html, body {
   height: 125px;
   position: relative;
 }
+
 .hero-loader__txt span {
   position: absolute;
   bottom: 0;
@@ -44,20 +49,24 @@ html, body {
   height: 0;
   background: #000;
 }
+
 .hero-loader.end {
   opacity: 0;
   pointer-events: none;
 }
+
 .hero-loader-clip {
   position: absolute;
   opacity: 0;
 }
+
 .hero-logo {
   position: absolute;
   top: 2rem;
   left: 2rem;
   opacity: 0;
 }
+
 .hero-enter {
   position: absolute;
   z-index: 1;
@@ -77,103 +86,125 @@ html, body {
   text-decoration: none;
   flex-direction: column;
 }
+
 @media (max-width: 768px) {
   .hero-enter {
     width: 60vw;
   }
 }
+
 .hero-enter .intro-image {
   margin-top: 1rem;
 }
+
 .hero-enter .enter-image {
   width: 392rem;
 }
+
 @media (max-width: 768px) {
   .hero-enter .enter-image {
     width: 60vw;
   }
 }
+
 .hero-artifact {
   position: absolute;
   width: 120rem;
   height: 120rem;
 }
+
 .hero-artifact--circle {
   top: 34vh;
   left: 60vw;
 }
+
 @media (min-height: 800px) {
   .hero-artifact--circle {
     top: 36vh;
   }
 }
+
 @media (min-width: 768px) {
   .hero-artifact--circle {
     left: 51vw;
   }
 }
+
 @media (min-width: 1300px) {
   .hero-artifact--circle {
     left: 52vw;
   }
 }
+
 @media (min-width: 1600px) {
   .hero-artifact--circle {
     left: 53vw;
   }
 }
+
 .hero-artifact--cone {
   top: 52vh;
   left: 59vw;
 }
+
 @media (min-width: 1300px) {
   .hero-artifact--cone {
     left: 60vw;
   }
 }
+
 @media (min-width: 1600px) {
   .hero-artifact--cone {
     left: 59vw;
   }
 }
+
 .hero-artifact--halfcircle {
   top: 48vh;
   left: 19vw;
 }
+
 @media (min-width: 768px) {
   .hero-artifact--halfcircle {
     left: 38vw;
   }
 }
+
 @media (min-width: 1300px) {
   .hero-artifact--halfcircle {
     left: 38.5vw;
   }
 }
+
 @media (min-width: 1600px) {
   .hero-artifact--halfcircle {
     left: 43vw;
   }
 }
+
 .hero-artifact--donut {
   top: 62vh;
   left: 47.5vw;
 }
+
 @media (min-width: 1300px) {
   .hero-artifact--donut {
     left: 48vw;
   }
 }
+
 @media (min-width: 1300px) {
   .hero-artifact--donut {
     left: 48vw;
   }
 }
+
 @media (min-width: 1600px) {
   .hero-artifact--donut {
     left: 50vw;
   }
 }
+
 .hero-video {
   position: absolute;
   top: 0;
@@ -183,12 +214,28 @@ html, body {
   object-fit: cover;
   visibility: hidden;
 }
+
+.hero-video-wrapper--2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.hero-video--2 {
+  width: 100%;
+  height: 100%;
+}
+
 .w-image {
   opacity: 0;
 }
+
 .content {
   padding: 5rem;
 }
+
 .hero-bottom {
   position: absolute;
   bottom: 2rem;
@@ -199,10 +246,11 @@ html, body {
   pointer-events: none;
   align-items: center;
 }
+
 .hero-bottom__text {
   max-width: 300px;
 }
+
 .col-2 {
   padding-left: 4rem;
 }
-

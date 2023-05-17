@@ -543,6 +543,8 @@ export default class Hero {
 
         if (error == true) {
             this.textureTemple = textureLoader.load( videotemple.dataset.imgalt );
+
+            console.log(this.textureTemple);
         } else {
             this.textureTemple = new THREE.VideoTexture(videotemple);
             this.textureTemple.matrixAutoUpdate = false;

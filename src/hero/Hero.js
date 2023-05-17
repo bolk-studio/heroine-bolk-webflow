@@ -501,14 +501,23 @@ export default class Hero {
         //VIDEO BG
         const videobg = document.querySelector('.hero-video--1');
         //videobg.setAttribute('crossorigin', 'anonymous');
-        videobg.play();
+        let error = false;
+        videobg.play().then(() => {}).catch((error) => {
+            error = true;
+        });
 
-        this.textureBG = new THREE.VideoTexture(videobg);
-        this.textureBG.matrixAutoUpdate = false;
+        if (error == true) {
+            this.textureBG = textureLoader.load( videobg.dataset.imgalt );
+        } else {
+            this.textureBG = new THREE.VideoTexture(videobg);
+            this.textureBG.matrixAutoUpdate = false;
+            this.textureBG.minFilter = THREE.LinearFilter;
+            this.textureBG.magFilter = THREE.LinearFilter;
+            this.textureBG.format = THREE.RGBAFormat;
+        }
 
-        this.textureBG.minFilter = THREE.LinearFilter;
-        this.textureBG.magFilter = THREE.LinearFilter;
-        this.textureBG.format = THREE.RGBAFormat;
+
+
 
         this.materialBG = new THREE.MeshBasicMaterial({ map: this.textureBG, transparent: true });
         this.materialBG.needsUpdate = true;
@@ -526,14 +535,23 @@ export default class Hero {
     addVideoTemple() {
         //VIDEO
         const videotemple = document.querySelector('.hero-video--2');
-        //videotemple.setAttribute('crossorigin', 'anonymous');
-        videotemple.play();
+        let error = false;
 
-        this.textureTemple = new THREE.VideoTexture(videotemple);
-        this.textureTemple.matrixAutoUpdate = false;
-        this.textureTemple.minFilter = THREE.LinearFilter;
-        this.textureTemple.magFilter = THREE.LinearFilter;
-        this.textureTemple.format = THREE.RGBAFormat;
+        videotemple.play().then(() => {}).catch((error) => {
+            error = true;
+        });
+
+        if (error == true) {
+            this.textureTemple = textureLoader.load( videotemple.dataset.imgalt );
+        } else {
+            this.textureTemple = new THREE.VideoTexture(videotemple);
+            this.textureTemple.matrixAutoUpdate = false;
+            this.textureTemple.minFilter = THREE.LinearFilter;
+            this.textureTemple.magFilter = THREE.LinearFilter;
+            this.textureTemple.format = THREE.RGBAFormat;
+        }
+
+
 
         this.materialTemple = new THREE.MeshBasicMaterial({ map: this.textureTemple, opacity: 0, transparent: true });
         this.materialTemple.needsUpdate = true;

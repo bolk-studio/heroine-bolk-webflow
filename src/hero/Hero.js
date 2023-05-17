@@ -502,19 +502,14 @@ export default class Hero {
         const videobg = document.querySelector('.hero-video--1');
         //videobg.setAttribute('crossorigin', 'anonymous');
         let error = false;
-        videobg.play().then(() => {}).catch((error) => {
-            error = true;
-        });
+        videobg.play();
 
-        if (error == true) {
-            this.textureBG = textureLoader.load( videobg.dataset.imgalt );
-        } else {
-            this.textureBG = new THREE.VideoTexture(videobg);
-            this.textureBG.matrixAutoUpdate = false;
-            this.textureBG.minFilter = THREE.LinearFilter;
-            this.textureBG.magFilter = THREE.LinearFilter;
-            this.textureBG.format = THREE.RGBAFormat;
-        }
+        this.textureBG = new THREE.VideoTexture(videobg);
+        this.textureBG.matrixAutoUpdate = false;
+        this.textureBG.minFilter = THREE.LinearFilter;
+        this.textureBG.magFilter = THREE.LinearFilter;
+        this.textureBG.format = THREE.RGBAFormat;
+
 
 
 
@@ -537,21 +532,13 @@ export default class Hero {
         const videotemple = document.querySelector('.hero-video--2');
         let error = false;
 
-        videotemple.play().then(() => {}).catch((error) => {
-            error = true;
-        });
+        videotemple.play();
 
-        if (error == true) {
-            this.textureTemple = textureLoader.load( videotemple.dataset.imgalt );
-
-            console.log(this.textureTemple);
-        } else {
-            this.textureTemple = new THREE.VideoTexture(videotemple);
-            this.textureTemple.matrixAutoUpdate = false;
-            this.textureTemple.minFilter = THREE.LinearFilter;
-            this.textureTemple.magFilter = THREE.LinearFilter;
-            this.textureTemple.format = THREE.RGBAFormat;
-        }
+        this.textureTemple = new THREE.VideoTexture(videotemple);
+        this.textureTemple.matrixAutoUpdate = false;
+        this.textureTemple.minFilter = THREE.LinearFilter;
+        this.textureTemple.magFilter = THREE.LinearFilter;
+        this.textureTemple.format = THREE.RGBAFormat;
 
 
 

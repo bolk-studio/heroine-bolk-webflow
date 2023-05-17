@@ -502,7 +502,9 @@ export default class Hero {
         const videobg = document.querySelector('.hero-video--1');
         //videobg.setAttribute('crossorigin', 'anonymous');
         let error = false;
-        videobg.play();
+        videobg.play().then(() => {}).catch((error) => {
+            console.log('error')
+        });
 
         this.textureBG = new THREE.VideoTexture(videobg);
         this.textureBG.matrixAutoUpdate = false;
@@ -532,7 +534,9 @@ export default class Hero {
         const videotemple = document.querySelector('.hero-video--2');
         let error = false;
 
-        videotemple.play();
+        videotemple.play().then(() => {}).catch((error) => {
+            console.log('error')
+        });
 
         this.textureTemple = new THREE.VideoTexture(videotemple);
         this.textureTemple.matrixAutoUpdate = false;

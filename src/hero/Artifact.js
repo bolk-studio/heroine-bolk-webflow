@@ -76,7 +76,9 @@ export default class Artifact {
 
     render = () => {
         if (window.matchMedia('(max-width: 767.98px)').matches) {
-            this.tmaterial.map.dispose();
+            if (this.tmaterial != null) {
+                this.tmaterial.map.dispose();
+            }
         }
         this.tmaterial.map = this.artifactImages[this.frames.frame];
         this.tmaterial.needsUpdate = true;
